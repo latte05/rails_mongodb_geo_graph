@@ -1,1 +1,5 @@
 <h1 align="center">home page</h1>
+
+<% if user_signed_in? %>
+   <p><%= link_to "logout", destroy_user_session_path, method: :delete %></p>
+ <% end %>
