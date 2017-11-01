@@ -38,6 +38,8 @@ gem 'devise'
 # geocoding
 gem 'geocoder'
 
+# importing csv
+gem 'roo'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -46,7 +48,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'pry-rails'
-  
+
 end
 
 group :development do

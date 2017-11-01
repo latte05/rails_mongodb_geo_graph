@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :pops do
+    collection { post :import }
+  end
+
   resources :sites
   resources :plans
   devise_for :users

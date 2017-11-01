@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pops</h1>
+
+<h2>Import App File</h2>
+  <%= form_tag({controller: "pops", action: "import", method: "post"}, {multipart: true}) do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "import file" %>
+<% end %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Site Name</th>
+      <th>Com POP Name</th>
+      <th>Address</th>
+      <th>Coordinates</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pops.each do |pop| %>
+      <tr>
+        <td><%= pop.sitename %></td>
+        <td><%= pop.com_popname %></td>
+        <td><%= pop.address %></td>
+        <td><%= pop.coordinates %></td>
+        <td><%= link_to 'Show', pop %></td>
+        <td><%= link_to 'Edit', edit_pop_path(pop) %></td>
+        <td><%= link_to 'Destroy', pop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pop', new_pop_path %>

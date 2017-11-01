@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pop.sitename %>
+</p>
+<p>
+  <strong>POP Name:</strong>
+  <%= @pop.com_popname %>
+</p>
+<p>
+  <strong>POP Name:</strong>
+  <%= @pop.address %>
+</p>
+<p>
+  <strong>Coordinates:</strong>
+  <%= @pop.coordinates %>
+</p>
+
+<%= link_to 'Edit', edit_pop_path(@pop) %> |
+<%= link_to 'Back', pops_path %>
