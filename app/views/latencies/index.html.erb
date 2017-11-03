@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Latencies</h1>
+<h2>Import App File</h2>
+  <%= form_tag({controller: "latencies", action: "import", method: "post"}, {multipart: true}) do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "import file" %>
+<% end %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>instance</th>
+      <th>from</th>
+      <th>to</th>
+      <th>latency</th>
+      <th>sla threshold</th>
+      <th>recored</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @latencies.each do |latency| %>
+      <tr>
+        <td><%= latency.instance %></td>
+        <td><%= link_to 'Show', latency %></td>
+        <td><%= link_to 'Edit', edit_latency_path(latency) %></td>
+        <td><%= link_to 'Destroy', latency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Latency', new_latency_path %>

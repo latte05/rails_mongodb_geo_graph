@@ -1,0 +1,14 @@
+<h1>Latency Update History </h>
+<% if latency.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(latency.errors.count, "error") %> prohibited this latency from being saved:</h2>
+
+    <ul>
+    <% latency.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= latency.instance if !nil %>

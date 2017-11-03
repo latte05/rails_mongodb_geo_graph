@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CatTest < ActiveSupport::TestCase
+class LatencyTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

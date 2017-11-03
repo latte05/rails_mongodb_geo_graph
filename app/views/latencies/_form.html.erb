@@ -1,0 +1,52 @@
+<%= form_with(model: latency, local: true) do |form| %>
+  <% if latency.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(latency.errors.count, "error") %> prohibited this latency from being saved:</h2>
+
+      <ul>
+      <% latency.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :instance %>
+    <%= form.text_field :instance %>
+    <br>
+
+    <%= form.label :node_from %>
+    <%= form.text_field :node_from %>
+    <br>
+
+    <%= form.label :node_to %>
+    <%= form.text_field :node_to %>
+    <br>
+
+    <%= form.label :raw_latency %>
+    <%= form.text_field :raw_latency %>
+    <br>
+
+    <%= form.label :sla %>
+    <%= form.text_field :sla_threshold %>
+    <br>
+
+    <%= form.label :timestamps%>
+    <%= form.datetime_field :timestamps %>
+    <br>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+    
+
+  -->
+    <%= debug @latency %>
+    <%= debug @latency.history %>
+</div>
+
+
+
+
+<% end %>
