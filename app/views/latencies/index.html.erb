@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Latencies</h1>
-<h2>Import App File</h2>
+<h2>Import Latency File</h2>
   <%= form_tag({controller: "latencies", action: "import", method: "post"}, {multipart: true}) do %>
     <%= file_field_tag :file %>
     <%= submit_tag "import file" %>

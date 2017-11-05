@@ -12,11 +12,26 @@ class LatenciesController < ApplicationController
   # GET /latencies.json
   def index
     @latencies = Latency.all
+
   end
 
   # GET /latencies/1
   # GET /latencies/1.json
   def show
+
+        #debugger
+        #@start_at = @latency.history.find{2015-01-01}
+        #@end_at = @latency.history.find{2015-12-01}
+        #@categories = @start_at.upto(@end_at).to_a
+        #@data = @start_at['raw_latency'].upto(@end_at['raw_latency']).to_a
+
+#       @h = LazyHighCharts::HighChart.new("graph") do |f|
+#        f.chart(:type => "line")
+#        f.title(:text => "Latency: #{@latency.instance}" )
+#        f.xAxis(:categories => @categories)
+#       f.series(:name => "sample",
+#                 :data => @data)
+#      end
   end
 
   # GET /latencies/new

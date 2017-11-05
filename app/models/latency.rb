@@ -34,7 +34,8 @@ class Latency
   def self.import(file)
     # UTF-8 conversion
     spreadsheet = Roo::Spreadsheet.open(file)
-    spreadsheet.default_sheet = '2015_10'
+    #spreadsheet.default_sheet =
+    spreadsheet.default_sheet = '2017_11'
     header = spreadsheet.row(2)
     (3..spreadsheet.last_row).each do |i|
 

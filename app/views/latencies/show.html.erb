@@ -2,7 +2,11 @@
 
 <%= render 'form', latency: @latency %>
 
+
+<!--- <%= high_chart("sample", @h) %>  -->
+
 <%= render 'history', latency: @latency %>'
+
 
 <%= link_to 'Edit', edit_latency_path(@latency) %> |
 <%= link_to 'Back', latencies_path %>
