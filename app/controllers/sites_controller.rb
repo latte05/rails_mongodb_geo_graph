@@ -1,10 +1,12 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
+  before_action :set_popname, only: [:show, :edit, :update, :destroy]
 
   # GET /sites
   # GET /sites.json
   def index
     @sites = Site.all
+    @pops = Pop.all
   end
 
   # GET /sites/1
@@ -15,6 +17,7 @@ class SitesController < ApplicationController
   # GET /sites/new
   def new
     @site = Site.new
+    @pop = Pop.new
   end
 
   # GET /sites/1/edit
@@ -67,9 +70,15 @@ class SitesController < ApplicationController
       @site = Site.find(params[:id])
     end
 
+    def set_popname
+      @pops = Pop.all.pluck(:com_popname)
+      @pops.compact!
+      @pops.to_s
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:sitename, :address, :latitude, :longitude)
+      params.require(:site).permit(:sitename, :address, :latitude, :longitude, :pop_assigned)
     end
 
 end

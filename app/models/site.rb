@@ -3,12 +3,19 @@ class Site
   include Mongoid::Timestamps
   include Geocoder::Model::Mongoid
   include Mongoid::Attributes::Dynamic
+  #has_one :pop
+  #accepts_nested_attributes_for :pop
+
 
   field :sitename, type: String
   field :address, type: String
   field :coordinates, type: Array
-  field :created_at, type:DateTime
-  field :updated_at, type:DateTime
+  field :logitude, type: Float
+  field :latitude, type: Float
+  field :created_at, type: DateTime
+  field :updated_at, type: DateTime
+  field :pop_assigned, type: String
+  field :access_distance, type: Float
 
 
   #attr_accessor :sitename, :address, :latitude, :longitude
@@ -19,11 +26,11 @@ class Site
 
   index({ coordinates: '2dsphere' })
 
-  after_validation :set_coordinates
+  #after_validation :set_coordinates
 
 
   private
-  def set_coordinates
+  def set_coordinate
     self.coordinates = [longitude.to_f, latitude.to_f]
   end
 

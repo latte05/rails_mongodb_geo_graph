@@ -1,5 +1,6 @@
 class PopsController < ApplicationController
   before_action :set_pop, only: [:show, :edit, :update, :destroy]
+#  before_action :set_popname, only: [:show, :edit, :update, :destroy]
 
   def import
     Pop.import(params[:file])
@@ -80,4 +81,10 @@ class PopsController < ApplicationController
     def pop_params
     params.require(:pop).permit(:sitename, :address, :com_popname)
     end
+
+    ## for form ##
+    #def set_popname
+    #    @pops = Pop.all.pluck(:com_popname,:id).compact
+    #end
+
 end

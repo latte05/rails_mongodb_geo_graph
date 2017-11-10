@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Site Name:</strong>
   <%= @site.address %>
 </p>
 
@@ -10,5 +10,13 @@
   <%= @site.coordinates %>
 </p>
 
+<p>
+  <strong>POP Name:</strong>
+  <%= @site.pop_assigned %>
+</p>
+
+
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', sites_path %>
+
+<%= debug @site %>

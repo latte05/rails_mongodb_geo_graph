@@ -1,4 +1,5 @@
-<%= form_with(model: site, local: true) do |form| %>
+<%#= form_with(model: site, local: true) do |form| %>
+<%= form_for site do |form| %>
   <% if site.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(site.errors.count, "error") %> prohibited this site from being saved:</h2>
@@ -14,24 +15,25 @@
   <div class="field">
     <%= form.label :sitename %><br>
     <%= form.text_field :sitename %>
-  </div>
 
-  <div class="field">
     <%= form.label :address %><br>
     <%= form.text_field :address %>
-  </div>
 
-  <div class="field">
     <%= form.label :latitude %><br>
     <%= form.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= form.label :longitude %><br>
-    <%= form.text_field :longitude %>
-  </div>
 
+    <%= form.label :logitude %><br>
+    <%= form.text_field :logitude %>
 
+    <%= form.label :pop_assigned %><br>
+    <%#= form.select :pop_assigned, @pops %>
+    <%= form.select :pop_assigned, Pop.all.pluck(:com_popname).compact %>
+
+    </div>
   <div class="actions">
     <%= form.submit %>
+
+    <%= debug @site %>
+
   </div>
-<% end %>
+  <% end %>

@@ -8,6 +8,9 @@ class Pop
   include Geocoder::Model::Mongoid
   include Mongoid::Attributes::Dynamic
 
+  #belongs_to  :site, :inverse_of => :pop
+
+  #attr_accessor :com_popname, :coordinates
 
   field :sitename, type: String
   field :com_popname, type: String
@@ -16,8 +19,6 @@ class Pop
   field :coordinates, type: Array
   field :created_at, type:DateTime
   field :updated_at, type:DateTime
-
-
 
   geocoded_by :address
   before_save :geocode
@@ -52,10 +53,8 @@ class Pop
   end
 
   def self.updatable_attributes
-
-  ["sitename","com_popname","address","created_at","coordinates"]
+    ["sitename","com_popname","address","created_at","coordinates"]
   end
-
 
   private
   def set_coordinates
