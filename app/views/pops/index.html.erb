@@ -27,7 +27,7 @@
         <td><%= pop.sitename %></td>
         <td><%= pop.com_popname %></td>
         <td><%= pop.address %></td>
-        <td><%= pop.coordinates %></td>
+        <td><%= pop.to_coordinates %></td>
         <td><%= link_to 'Show', pop %></td>
         <td><%= link_to 'Edit', edit_pop_path(pop) %></td>
         <td><%= link_to 'Destroy', pop, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -83,4 +83,5 @@ class SitesController < ApplicationController
       params.require(:site).permit(:sitename, :address, :latitude, :longitude, :pop_assigned)
     end
 
+
 end

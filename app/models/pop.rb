@@ -17,6 +17,8 @@ class Pop
   field :vpop_name, type: String
   field :address, type: String
   field :coordinates, type: Array
+  field :pop_longitude, type: Float
+  field :pop_latitude, type: Float
   field :created_at, type:DateTime
   field :updated_at, type:DateTime
 
@@ -25,7 +27,7 @@ class Pop
 
   index({ coordinates: '2dsphere'})
 
-  #after_validation  :set_coordinates
+  after_validation  :set_coordinates
 
   ## Not working!
   def self.import(file)
@@ -58,7 +60,7 @@ class Pop
 
   private
   def set_coordinates
-    self.coordinates = [longitude.to_f, latitude.to_f]
+    self.coordinates = [pop_latitude.to_f, pop_longitude.to_f]
   end
 
 end
