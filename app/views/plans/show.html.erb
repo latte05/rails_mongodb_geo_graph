@@ -1,9 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @plan.title %>
+  <h1>Customer:  <%= @plan.customer %> </h1>
 </p>
+
+<p>
+  <h1>Plan Name: <%= @plan.plan_name %></h1>
+</p>
+
 
 <%= link_to 'Edit', edit_plan_path(@plan) %> |
 <%= link_to 'Back', plans_path %>
+
+<%= render partial: '/sites/index' %>

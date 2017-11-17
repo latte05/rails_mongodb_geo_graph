@@ -29,10 +29,11 @@ class SitesController < ApplicationController
   # POST /sites.json
   def create
     @site = Site.new(site_params)
+    @site.plan_id = Plan.first
 
     respond_to do |format|
       if @site.save
-        format.html { redirect_to @site, notice: 'Site was successfully created.' }
+        format.html { redirect_to @site.plan, notice: 'Site was successfully created.' }
         format.json { render :show, status: :created, location: @site }
       else
         format.html { render :new }
@@ -80,7 +81,7 @@ class SitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:sitename, :address, :latitude, :longitude, :pop_assigned)
+      params.require(:site).permit(:site_name, :address, :latitude, :longitude, :pop_assigned, :hub_status)
     end
 
 

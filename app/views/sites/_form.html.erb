@@ -13,21 +13,25 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :sitename %><br>
-    <%= form.text_field :sitename %>
+    <br>
+    <%= form.label :site_name %>
+    <%= form.text_field :site_name %><br><p>
 
-    <%= form.label :address %><br>
-    <%= form.text_field :address %>
+    <%= form.label :address %>
+    <%= form.text_field :address %><br><p>
 
-    <%= form.label :latitude %><br>
-    <%= form.text_field :latitude %>
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %><br><p>
 
-    <%= form.label :longitude %><br>
-    <%= form.text_field :longitude %>
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %><br><p>
 
-    <%= form.label :pop_assigned %><br>
+    <%= form.label :pop_assigned, "POP" %>
     <%#= form.select :pop_assigned, @pops %>
-    <%= form.select :pop_assigned, Pop.all.pluck(:com_popname).compact %>
+    <%= form.select :pop_assigned, Pop.all.pluck(:com_popname).compact %><br><p>
+
+    <%= form.label :hub_status %>
+    <%= form.check_box :hub_status, {}, true, false %><br><p>
 
     </div>
   <div class="actions">

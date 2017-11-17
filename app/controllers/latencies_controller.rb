@@ -11,7 +11,8 @@ class LatenciesController < ApplicationController
   # GET /latencies
   # GET /latencies.json
   def index
-    @latencies = Latency.all
+    @latencies = Latency.paginate(:page => params[:page], :per_page => 100)
+  #  @latencies = Latency.all
   end
 
   # GET /latencies/1

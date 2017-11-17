@@ -1,0 +1,92 @@
+<!--- this is for plan render --->
+
+
+<p id="notice"><%= notice %></p>
+<% if @sites.count != 0 %>
+
+
+<h1> Hub Site</h1>
+<p></p>
+  <% @sites.each do |site| %>
+    <% if site.hub_status? %>
+      <p><%= site.site_name + " | " + site.pop_assigned %> </p>
+    <% end %>
+  <% end %>
+
+<h1>End to End Latency and SLA </h1>
+<p></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Site Name</th>
+        <th>POP</th>
+      <% @sites.each do |site| %>
+         <th><%= "Hub: " + site.site_name if site.hub_status? %></th>
+      <% end %>
+        <th>Est.Latency</th>
+        <th>SLA</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+          <% @hubs.each do |hub| %>
+            <tr>
+              <td><%= hub.site_name %></td>
+              <td><%= hub.pop_assigned %></td>
+
+
+
+              <td><%= link_to 'Show', hub %></td>
+              <td><%= link_to 'Edit', edit_site_path(hub) %></td>
+              <td><%= link_to 'Destroy', hub, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+
+
+<br>
+<br>
+
+<h1> Site Lists</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Site Name</th>
+        <th>Address</th>
+        <th>POP</th>
+        <th>AL Distance</th>
+        <th>AL Latency</th>
+        <th>AL SLA</th>
+        <th>Hub </th>
+
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @sites.each do |site| %>
+        <tr>
+          <td><%= site.site_name %></td>
+          <td><%= site.address %></td>
+          <td><%= site.pop_assigned %></td>
+          <td><%= site.al_distance %>km</td>
+          <td><%= site.s2p_est_latency %>ms </td>
+          <td><%= site.s2p_sla_latency %>ms</td>
+          <td><%= site.hub_status %> </td>
+
+          <td><%= link_to 'Show', site %></td>
+          <td><%= link_to 'Edit', edit_site_path(site) %></td>
+          <td><%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+    <p> There is no Sites under this Plan, let's start adding sites </p>
+  <% end %>
+
+<br>
+
+<%= link_to 'New Site', new_site_path %>

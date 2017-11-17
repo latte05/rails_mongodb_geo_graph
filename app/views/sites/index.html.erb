@@ -5,12 +5,14 @@
 <table>
   <thead>
     <tr>
+      <th>Plan Name</th>
       <th>Site Name</th>
       <th>Address</th>
       <th>POP</th>
       <th>AL Distance</th>
       <th>AL Latency</th>
       <th>AL SLA</th>
+      <th>Hub</th>
 
       <th colspan="3"></th>
     </tr>
@@ -19,12 +21,14 @@
   <tbody>
     <% @sites.each do |site| %>
       <tr>
-        <td><%= site.sitename %></td>
+        <td><%= site.plan.plan_name %> </td>
+        <td><%= site.site_name %></td>
         <td><%= site.address %></td>
         <td><%= site.pop_assigned %></td>
         <td><%= site.al_distance %>km</td>
         <td><%= site.s2p_est_latency %>ms </td>
         <td><%= site.s2p_sla_latency %>ms</td>
+        <td><%= site.hub_status %></td>
 
         <td><%= link_to 'Show', site %></td>
         <td><%= link_to 'Edit', edit_site_path(site) %></td>

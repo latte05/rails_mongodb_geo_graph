@@ -3,11 +3,13 @@ class Site
   include Mongoid::Timestamps
   include Geocoder::Model::Mongoid
   include Mongoid::Attributes::Dynamic
+  belongs_to :plan
+  validates :plan_id, presence: true
 
   #has_one :pop
   #accepts_nested_attributes_for :pop
 
-  field :sitename, type: String
+  field :site_name, type: String
   field :address, type: String
   field :coordinates, type: Array
   field :longitude, type: Float
@@ -19,8 +21,10 @@ class Site
   field :al_distance, type: Float
   field :s2p_est_latency, type: Float
   field :s2p_sla_latency, type: Float
+  field :hub_status, type: Boolean, default: false
 
-  #attr_accessor :sitename, :address, :latitude, :longitude
+
+  #attr_accessor :site_name, :address, :latitude, :longitude
   #geocoded_by :address, coordinates: :coordinates
   after_validation :geocode
   after_validation :set_coordinates

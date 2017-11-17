@@ -27,6 +27,9 @@ class Latency
   field :created_at, type:DateTime
   field :updated_at, type:DateTime
 
+  index({ instance: 1}, {unique: true, name: "instance_index" })
+
+
   after_update do
       self.history << history_was if history_changed?
   end

@@ -65,10 +65,12 @@ class PlansController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_plan
       @plan = Plan.find(params[:id])
+      @sites = @plan.sites
+      @hubs = @plan.sites
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:title)
+      params.require(:plan).permit(:customer, :plan_name)
     end
 end
