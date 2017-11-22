@@ -26,12 +26,14 @@
     <%= form.label :longitude %>
     <%= form.text_field :longitude %><br><p>
 
-    <%= form.label :pop_assigned, "POP" %>
+    <%= form.label :pop_assigned, "Select POP" %>
     <%#= form.select :pop_assigned, @pops %>
     <%= form.select :pop_assigned, Pop.all.pluck(:com_popname).compact %><br><p>
 
-    <%= form.label :hub_status %>
-    <%= form.check_box :hub_status, {}, true, false %><br><p>
+    <%= form.label :hub_status, "Hub" %>
+    <%= form.hidden_field :hub_status, :value => false %>
+    <%= form.check_box :hub_status, {}, true %><br><p>
+
 
     </div>
   <div class="actions">
