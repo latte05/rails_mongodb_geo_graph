@@ -52,6 +52,7 @@ class Latency
       ["instance","section","node_from","node_to","address","raw_latency","sla_threshold","timestamps","history"]
     end
 
+
   private
     #set section
     def set_section_array

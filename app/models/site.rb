@@ -35,6 +35,25 @@ class Site
   before_save :set_pop_coordinates
   before_save :set_al_params
 
+
+###
+  def get_p2p_latency(hub)
+    pop1 = self.pop_assigned
+    pop2 = hub
+      if pop1 < pop2
+        instance_name = pop1 + "-" + pop2 + "_Standard"
+      else
+        instance_name = pop2 + "-" + pop1 + "_Standard"
+      end
+      puts "Instance Name: " + instance_name #debug
+      @latency = Latency.find_by(:instance => instance_name)
+      p2p_latency = !@latency.nil? ? @latency.raw_latency.round(3) : "n/a"
+      p2p_sla = !@latency.nil? ? @latency.sla_threshold.round(3) : "n/a"
+      puts "P2P Latency: #{p2p_latency}"
+      puts "P2P SLA: #{p2p_sla}"
+      return [p2p_latency, p2p_sla]
+  end
+
   private
   def set_coordinates
     # if user wants to set latitude and longitude, update the coordinates
@@ -55,7 +74,7 @@ class Site
       #this is based on mongodb database to handle coordinates.
       self.al_distance = Geocoder::Calculations.distance_between(self.to_coordinates, self.pop_coordinates, :units => :km).round(3)
       # estimated lateny is 5msec + AL*0.02 / SLA is estimated latency * 1.3
-      self.s2p_est_latency = ((al_distance)*0.02).round(3) + 5
+      self.s2p_est_latency = (((al_distance)*0.02) + 5).round(3)
       self.s2p_sla_latency = (s2p_est_latency*1.3).round(3)
     end
   end

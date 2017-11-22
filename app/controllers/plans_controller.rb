@@ -66,7 +66,7 @@ class PlansController < ApplicationController
     def set_plan
       @plan = Plan.find(params[:id])
       @sites = @plan.sites
-      @hubs = @plan.sites
+      @hubs = @plan.sites.select {|n| n.hub_status == true}
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
