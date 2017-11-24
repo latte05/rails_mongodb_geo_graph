@@ -41,6 +41,8 @@
 </p>
 
 <%= link_to 'Edit', edit_site_path(@site) %> |
-<%= link_to 'Back', sites_path %>
+<%= link_to 'Back To Site List', sites_path %>
+<%= link_to 'Back To Plan', plan_path(@site.plan_id) %>
+
 
 <%= debug @site %>

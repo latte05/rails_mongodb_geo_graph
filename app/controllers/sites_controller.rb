@@ -44,7 +44,8 @@ class SitesController < ApplicationController
   # PATCH/PUT /sites/1
   # PATCH/PUT /sites/1.json
   def update
-    set_plan
+    #assume that all sites are alrady assigned unique id.
+    #set_plan
     respond_to do |format|
       if @site.update(site_params)
         format.html { redirect_to @site, notice: 'Site was successfully updated.' }
@@ -79,7 +80,12 @@ class SitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:site_name, :address, :latitude, :longitude, :pop_assigned, :hub_status)
+      params.require(:site).permit(:site_name,
+                                   :address,
+                                   :latitude,
+                                   :longitude,
+                                   :pop_assigned,
+                                   :hub_status)
     end
 
 

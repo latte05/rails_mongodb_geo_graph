@@ -35,9 +35,6 @@ class Site
   before_save :set_pop_coordinates
   before_save :set_al_params
 
-
-###
-
   def get_e2e_latency(hub)
     ## pp_arr = pop to pop array [latency, sla]
     ## al_aar1 = @site al [latency, sla]
