@@ -20,6 +20,25 @@
   <%= @site.pop_coordinates %>
 </p>
 
+<p>
+  <strong>Distance Between:</strong>
+  <%= @site.al_distance %> km
+</p>
+
+<p>
+  <strong>Site to Pop Estimated Latency</strong>
+  <%= @site.s2p_est_latency %> ms
+</p>
+
+<p>
+  <strong>Site to Pop Estimated SLA</strong>
+  <%= @site.s2p_sla_latency %> ms
+</p>
+
+<p>
+  <strong>Hub Status</strong>
+  <%= @site.hub_status %>
+</p>
 
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', sites_path %>

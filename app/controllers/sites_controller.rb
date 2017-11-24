@@ -18,19 +18,18 @@ class SitesController < ApplicationController
   # GET /sites/new
   def new
     @site = Site.new
-    #@pop = Pop.new
   end
 
   # GET /sites/1/edit
   def edit
+
   end
 
   # POST /sites
   # POST /sites.json
   def create
     @site = Site.new(site_params)
-    @site.plan_id = Plan.first
-
+    set_plan
     respond_to do |format|
       if @site.save
         format.html { redirect_to @site.plan, notice: 'Site was successfully created.' }
@@ -45,6 +44,7 @@ class SitesController < ApplicationController
   # PATCH/PUT /sites/1
   # PATCH/PUT /sites/1.json
   def update
+    set_plan
     respond_to do |format|
       if @site.update(site_params)
         format.html { redirect_to @site, notice: 'Site was successfully updated.' }
@@ -73,11 +73,9 @@ class SitesController < ApplicationController
       @site = Site.find(params[:id])
     end
 
-  #  def set_popname
-  #    @pops = Pop.all.pluck(:com_popname)
-  #    @pops.compact!
-  #    @pops.to_s
-  #  end
+    def set_plan
+      @site.plan_id = Plan.find_by(:plan_name => params[:site][:plan_id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params

@@ -37,12 +37,44 @@ class Site
 
 
 ###
+
+  def get_e2e_latency(hub)
+    ## pp_arr = pop to pop array [latency, sla]
+    ## al_aar1 = @site al [latency, sla]
+    ## al_arr2 = @hub al [latency, sla]
+    ## resut is sum of each array and return end to end latency array [latency, sla]
+    if self.s2p_est_latency.nil? || hub.s2p_est_latency.nil?
+      return ["n/a", "n/a"]
+    elsif self == hub
+      return ["n/a", "n/a"]
+    elsif
+      pp_arr = get_p2p_latency(hub.pop_assigned)
+      if pp_arr == ["n/a","n/a"]
+        return ["n/a","n/a"]
+      end
+        puts "Site PE Name: #{self.pop_assigned}"
+        puts "Hub PE Name: #{hub.pop_assigned}"
+        al_arr1 = [self.s2p_est_latency, self.s2p_sla_latency]
+        al_arr2 = [hub.s2p_est_latency, hub.s2p_sla_latency]
+        ## sum of each array element
+        result = pp_arr.zip(al_arr1).map{|f,s| f+s.round(3)}
+        result = result.zip(al_arr2).map{|f,s| f+s.round(3)}
+        puts "E2E Latency #{result[0]}"
+        puts "E2E SLA #{result[1]}"
+        return result
+     end
+  end
+
   def get_p2p_latency(hub)
     pop1 = self.pop_assigned
     pop2 = hub
       if pop1 < pop2
         instance_name = pop1 + "-" + pop2 + "_Standard"
-      else
+      elsif pop1 == pop2
+        instance_name = "same hub"
+        ## if it's same hub latency is 0 ms and 2ms for SLA
+        return [0, 2]
+      elsif
         instance_name = pop2 + "-" + pop1 + "_Standard"
       end
       puts "Instance Name: " + instance_name #debug

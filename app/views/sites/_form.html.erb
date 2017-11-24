@@ -14,6 +14,9 @@
 
   <div class="field">
     <br>
+    <%= form.label :plan_id %>
+    <%= form.select :plan_id, Plan.all.pluck(:plan_name).compact %><br><p>
+
     <%= form.label :site_name %>
     <%= form.text_field :site_name %><br><p>
 
